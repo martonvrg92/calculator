@@ -45,6 +45,6 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 
 In the backend directory, you can run:
 
-### npm start
+### `npm start`
 
 Starts the backend server on port 3001 ( or the one you specify in the .env file).
