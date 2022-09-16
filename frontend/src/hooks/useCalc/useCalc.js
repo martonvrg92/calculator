@@ -3,8 +3,8 @@ import { useState } from "react";
 const useCalc = () => {
   const [result, setResult] = useState("")
   
-  const memorySave = () => {
-    fetch('http://localhost:3001/memory/save', {
+  const memorySave = async () => {
+    await fetch(process.env.REACT_APP_BACKEND_URL + '/memory/save', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -15,7 +15,7 @@ const useCalc = () => {
   }
   
   const memoryRecall = async () => {
-    let memory = await fetch('http://localhost:3001/memory/recall')
+    let memory = await fetch(process.env.REACT_APP_BACKEND_URL + '/memory/recall')
     .then(res => res.json())
     .then(body => body.data)
     setResult(memory)
@@ -26,17 +26,21 @@ const useCalc = () => {
       setResult("")
       return
     }
+    if ("+/*-".includes(result[result.length-1]) && "+/*-".includes(val)) {
+      setResult(result.slice(0,-1) + val)
+      return
+    }
     if (result === "0" && val === "0") {
       return
     }
     if (val === "." && result.includes(".")) {
       return
     }
-    if(result === "0" && (val !== "0" && val !== ".")) {
-      setResult(val)
+    if(result === "" && "+/*-".includes(val)) {
       return
     }
-    if((result === "" || result === "0") && "+/*-".includes(val)) {
+    if(result === "0" && (!"0.+-*/".includes(val))) {
+      setResult(val)
       return
     }
     setResult(result.concat(val));

@@ -1,5 +1,5 @@
-import Button from "./components/Button";
-import Display from "./components/Display";
+import Button from "./components/Button/Button";
+import Display from "./components/Display/Display";
 import useCalc from "./hooks/useCalc/useCalc";
 import "./styles.css"
 
