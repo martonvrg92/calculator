@@ -1,14 +1,20 @@
 import { memoryService } from '../../services';
 
 const get = async (req, res) => {
-  let data = await memoryService.memoryRecall()
-  res.status(200).json({data: data})
+  try {
+    res.status(200).json({data: await memoryService.memoryRecall('./memory.txt')})
+  } catch (error) {
+    res.status(500).json(error)
+  }
 }
 
 const post =  async (req, res) => {
-  let number = req.body.data
-  await memoryService.memorySave(number)
-  res.status(200).json("saved to memory")
+  try {
+    await memoryService.memorySave('./memory.txt',req.body.data)
+    res.status(200).json("saved to memory")
+  } catch (error) {
+    res.status(500).json(error)
+  }
 }
 
 export default {
