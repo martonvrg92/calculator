@@ -1,6 +1,6 @@
 Kérlek, írd össze, hogy mit változtatnál a fentiekhez képest, ha egy skálázható, több szerveres környezetben kellene üzemeltetni a kódot, akár több ezer felhasználóval.
 
-1. Ha nem ragaszkodunk a backend-hez akkor annyit változtatnék, hogy az app a sessionstorage-be mentené le a memóriát, és onnan hivná meg.
+1. Ha nem ragaszkodunk a backend-hez akkor annyit változtatnék, hogy az app a localstorage-be, vagy a sessionstorage-be mentené le a memóriát, és onnan hivná meg.
 
 Deploy:
 Innentől csak csinálnék egy production buildet (npm build) a frontendhez, használnék egy webservert (pl.: NGINX), ami betölti a static oldalakat a buildből,
