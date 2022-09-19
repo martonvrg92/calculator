@@ -47,4 +47,12 @@ In the backend directory, you can run:
 
 ### `npm start`
 
-Starts the backend server on port 3001 ( or the one you specify in the .env file).
+Starts the backend server on port 3001 (or the one you specify in the .env file).
+
+### `npm run dev`
+
+Starts the backend development server on port 3001 (or the one you specify in the .env file).
+
+### `npm test`
+
+Running the backend unit tests.

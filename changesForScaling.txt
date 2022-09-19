@@ -1,0 +1,21 @@
+Kérlek, írd össze, hogy mit változtatnál a fentiekhez képest, ha egy skálázható, több szerveres környezetben kellene üzemeltetni a kódot, akár több ezer felhasználóval.
+
+1. Ha nem ragaszkodunk a backend-hez akkor annyit változtatnék, hogy az app a sessionstorage-be mentené le a memóriát, és onnan hivná meg.
+
+Deploy:
+Innentől csak csinálnék egy production buildet (npm build) a frontendhez, használnék egy webservert (pl.: NGINX), ami betölti a static oldalakat a buildből,
+és deployolnám az appot.
+
+2. Ha backenddel akarjuk, akkor szükség lesz egy adatbázisra, ami tárolja az adott session-höz tartozó memóriát. Tehát nem egy fájlba menteném a memóriát, hanem egy adatbázisba.
+A frontenden a POST request headerben küldenék egy unique session id-t, ezt használná az adatbázis id-nek. A GET request pedig ezt a session id-t keresné az adatbázisba, és az ehhez
+tartozó memória értéket adná vissza.
+
+Deploy:
+Csinálnék Dockerfile-t a backendhez, illetve a frontendhez.
+  -A frontend Dockerfile-ban lebuildelném a frontendet, és futtatnék egy webserver-t (pl.: NGINX).
+  -A backend Dockerfile elinditaná a backend servert
+
+A Dockerfile-okból lebuildelném a docker image-eket, és feltölteném őket egy container registry-be (DockerHub, AWS ECR), hogy könnyen elérhetőek legyenek.
+Csinálnék egy docker-compose.yml fájlt, amiben futtatnám a két image-et (backend, frontend). A backendnél megadnám az adatbázishoz szükséges adatokat.
+
+A docker-compose segitségével deployolnám az appot egy VM-re (AWS EC2, AWS Fargate, Azure, Heroku stb.), hogy mindenki által elérhető legyen.
