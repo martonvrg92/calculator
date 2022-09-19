@@ -5,7 +5,7 @@ import "./styles.css"
 
 function App() {
 
-  const {memoryRecall, memorySave, handleClick, clear, del, calculate, result} = useCalc()
+  const {memoryRecall, memorySave, handleClick, clear, del, calculate, result} = useCalc();
 
   return (
     <div className="calculator-grid">

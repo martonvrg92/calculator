@@ -4,6 +4,6 @@ function Display({ result }) {
     <div className="result">{result}</div>
   </div>
   )
-}
+};
 
-export default Display
+export default Display;

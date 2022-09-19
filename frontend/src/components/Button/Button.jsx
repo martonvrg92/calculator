@@ -3,6 +3,6 @@ function Button({ name, handleClick, className }) {
   onClick={() => handleClick(name)}
   className={className}
   >{name}</button>
-}
+};
 
-export default Button
+export default Button;

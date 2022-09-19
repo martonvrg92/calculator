@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const useCalc = () => {
-  const [result, setResult] = useState("")
+  const [result, setResult] = useState("");
   
   const memorySave = async () => {
     await fetch(process.env.REACT_APP_BACKEND_URL + '/memory/save', {
@@ -11,34 +11,34 @@ const useCalc = () => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({data: result})
-    })
-  }
+    });
+  };
   
   const memoryRecall = async () => {
     let memory = await fetch(process.env.REACT_APP_BACKEND_URL + '/memory/recall')
     .then(res => res.json())
     .then(body => body.data)
-    if (memory.length > 0 && "+-*/".includes(result[result.length-1])) {
-      setResult(result + memory)
+    if (memory.length > 0 && "+-*/.".includes(result[result.length-1])) {
+      setResult(result + memory);
     } else if ("+-*/".includes(result[result.length-1])) {
-      setResult(result + '0')
+      setResult(result + '0');
     } else {
       if (memory.length > 0) {
-        setResult(memory)
+        setResult(memory);
       }
       else {
-        setResult('0')
+        setResult('0');
       }
     }
-  }
+  };
 
   const handleClick = (val) => {
     if (result === "Error") {
-      setResult("")
+      setResult("");
       return
     }
     if ("+/*-".includes(result[result.length-1]) && "+/*-".includes(val)) {
-      setResult(result.slice(0,-1) + val)
+      setResult(result.slice(0,-1) + val);
       return
     }
     if (result === "0" && val === "0") {
@@ -51,33 +51,33 @@ const useCalc = () => {
       return
     }
     if(result === "0" && (!"0.+-*/".includes(val))) {
-      setResult(val)
+      setResult(val);
       return
     }
     setResult(result.concat(val));
   }
 
   const clear = () => {
-    setResult("")
+    setResult("");
   }
 
   const del = () =>  {
-    setResult(result.slice(0,-1))
+    setResult(result.slice(0,-1));
   }
 
   const calculate = () => {
     if (result === "Error" || result === "") {
-      setResult("")
+      setResult("");
       return
     }
     try {
-      setResult(eval(result).toString())
+      setResult(eval(result).toString());
     } catch (error) {
-      setResult("Error")
+      setResult("Error");
     }
   }
 
   return {memoryRecall, memorySave, handleClick, clear, del, calculate, result}
-}
+};
 
 export default useCalc;

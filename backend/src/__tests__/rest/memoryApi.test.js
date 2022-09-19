@@ -1,5 +1,5 @@
 import supertest from 'supertest';
-import app from '../../rest'
+import app from '../../rest';
 import { memoryService } from '../../services';
 
 describe('POST memory/save', () => {

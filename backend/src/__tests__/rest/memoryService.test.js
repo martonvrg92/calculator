@@ -4,14 +4,14 @@ import fs from 'fs-extra';
 import { vol } from 'memfs';
 
 
-jest.mock('fs/promises')
+jest.mock('fs/promises');
 
 
 describe('Tests for memoryService', ()=> {
 
   beforeEach(()=> {
     vol.reset();
-  })
+  });
 
   it('should write to file', async () => {
     const file = '/file.txt';
