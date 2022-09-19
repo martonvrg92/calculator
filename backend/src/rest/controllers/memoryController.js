@@ -11,7 +11,7 @@ const get = async (req, res) => {
 const post =  async (req, res) => {
   try {
     await memoryService.memorySave('./memory.txt',req.body.data)
-    res.status(200).json("saved to memory")
+    res.status(200).json({message: "saved to memory"})
   } catch (error) {
     res.status(500).json(error)
   }
