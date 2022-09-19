@@ -18,7 +18,18 @@ const useCalc = () => {
     let memory = await fetch(process.env.REACT_APP_BACKEND_URL + '/memory/recall')
     .then(res => res.json())
     .then(body => body.data)
-    setResult(memory)
+    if (memory.length > 0 && "+-*/".includes(result[result.length-1])) {
+      setResult(result + memory)
+    } else if ("+-*/".includes(result[result.length-1])) {
+      setResult(result + '0')
+    } else {
+      if (memory.length > 0) {
+        setResult(memory)
+      }
+      else {
+        setResult('0')
+      }
+    }
   }
 
   const handleClick = (val) => {
