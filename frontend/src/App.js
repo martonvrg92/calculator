@@ -13,7 +13,7 @@ function App() {
       <Button name="Clear" handleClick={clear} className="span-two" />
       <Button name="DEL" handleClick={del} />
       <Button name="/" handleClick={handleClick}/>
-      <Button name="M" handleClick={memorySave} className="two-col" />
+      <Button name="MS" handleClick={memorySave} className="two-col" />
       <Button name="1" handleClick={handleClick}/>
       <Button name="2" handleClick={handleClick}/>
       <Button name="3" handleClick={handleClick}/>
